@@ -19,13 +19,22 @@ var loaders = [
 ];
 
 module.exports = [{
-  entry: {
-    demo: './src/demo.js',
-  },
+  entry: './src/RichTextEditor.js',
   output: {
-    path: path.join(__dirname, 'assets/dist'),
-    publicPath: '/',
-    filename: '[name].js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'react-rte.js',
+    libraryTarget: 'commonjs2',
+  },
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+  },
+  module: {loaders: loaders},
+}, {
+  entry: './src/demo.js',
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'demo.js',
   },
   module: {loaders: loaders},
 }];
