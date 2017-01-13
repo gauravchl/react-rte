@@ -75,7 +75,7 @@ export default class EditorToolbar extends Component {
           return this._renderBlockTypeDropdown(groupName, toolbarConfig);
         }
         case 'IMAGE_BUTTON': {
-          return this._renderImageButton();
+          return this._renderImageButton(groupName);
         }
         case 'LINK_BUTTONS': {
           return this._renderLinkButtons(groupName, toolbarConfig);
@@ -177,7 +177,7 @@ export default class EditorToolbar extends Component {
     );
   }
 
-  _renderImageButton(): React.Element {
+  _renderImageButton(name: string): React.Element {
     const {editorState} = this.props;
     let selection = editorState.getSelection();
     let entity = this._getEntityAtCursor();
@@ -185,7 +185,7 @@ export default class EditorToolbar extends Component {
     let isCursorOnImage = (entity != null && entity.type === ENTITY_TYPE.IMAGE);
     let shouldShowImageButton = hasSelection || isCursorOnImage;
     return (
-      <ButtonGroup>
+      <ButtonGroup key={name}>
         <PopoverIconButton
           label="Image"
           iconName="image"
